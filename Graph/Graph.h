@@ -9,34 +9,39 @@ struct Edge{
 		toward = destination_index; weight = w;
 	}
 } ;
+
 class Graph {
 private:
 	int vertices; // the number of vertices
-	vector<vector<Edge>> adjacencyList; // vector ÀÇ Å©±â¸¦ »çÀü¿¡ ¸»ÇÏÁö ¾Ê¾Æµµ µÅ¼­ ÆíÇÔ.
+	vector<vector<Edge>> adjacencyList; // vector ì˜ í¬ê¸°ë¥¼ ì‚¬ì „ì— ë§í•˜ì§€ ì•Šì•„ë„ ë¼ì„œ í¸í•¨.
 	// vector<Edge> = {(t1,w1),(t2,w2),...,(tn,wn)} 
-	// Áï Edge µéÀÌ vector ÇüÅÂ·Î Á¤ÀÇµÇ¾úÀ½. ÇÏ³ªÀÇ vector<Edge> ´Â ÇÏ³ªÀÇ vertex ¿¡ ¿¬°áµÊ.
-	// adjacencyList[0] = {(t1,w1),(t2,w2),...,(tn,wn)} 0 ¹øÂ° vertex¿¡ ¿¬°áµÈ edge ¼ö n°³
-	// adjacencyList[1] = {(t1,w1),(t2,w2),...,(tm,wm)} 1 ¹øÂ° vertex¿¡ ¿¬°áµÈ edge ¼ö m°³
-	// adjacencyList[2] = {(t1,w1),(t2,w2),...,(tk,wk)} 2 ¹øÂ° vertex¿¡ ¿¬°áµÈ edge ¼ö k°³
+	// ì¦‰ Edge ë“¤ì´ vector í˜•íƒœë¡œ ì •ì˜ë˜ì—ˆìŒ. í•˜ë‚˜ì˜ vector<Edge> ëŠ” í•˜ë‚˜ì˜ vertex ì— ì—°ê²°ë¨.
+	// adjacencyList[0] = {(t1,w1),(t2,w2),...,(tn,wn)} 0 ë²ˆì§¸ vertexì— ì—°ê²°ëœ edge ìˆ˜ nê°œ
+	// adjacencyList[1] = {(t1,w1),(t2,w2),...,(tm,wm)} 1 ë²ˆì§¸ vertexì— ì—°ê²°ëœ edge ìˆ˜ mê°œ
+	// adjacencyList[2] = {(t1,w1),(t2,w2),...,(tk,wk)} 2 ë²ˆì§¸ vertexì— ì—°ê²°ëœ edge ìˆ˜ kê°œ
 public:
 	// Constructor
-	Graph(int num) { // Á¤Á¡ÀÇ ¼ö¸¦ ÀÔ·ÂÆÄ¶ó¹ÌÅÍ·Î ¹Ş¾Æ Graph ¸¦ »ı¼ºÇÔ.
+	Graph(int num) { // ì •ì ì˜ ìˆ˜ë¥¼ ì…ë ¥íŒŒë¼ë¯¸í„°ë¡œ ë°›ì•„ Graph ë¥¼ ìƒì„±í•¨.
 		vertices = num;
-		adjacencyList.resize(num); // vector ·Î Á¤ÀÇµÈ adjacency list ÀÇ Å©±â¸¦ ÀÔ·Â°ªÀ¸·Î Á¶Á¤(¼³Á¤)
+		adjacencyList.resize(num); // vector ë¡œ ì •ì˜ëœ adjacency list ì˜ í¬ê¸°ë¥¼ ì…ë ¥ê°’ìœ¼ë¡œ ì¡°ì •(ì„¤ì •)
 	}
 
 	// member function
 	void addEdge(int v, int toward_w, int weight){ // v--weight--->w
 		adjacencyList[v].emplace_back(Edge(toward_w, weight));
 	}
+
 	void print_Graph() {
 		for (int i = 0; i < vertices; i++) {
-			for (auto& edge : adjacencyList[i]) { // adjacencyList[i] ¾ÈÀÇ ¿ø¼ÒµéÀ» iÃ³·³ È°¿ëÇÏ´Âµ¥ ±× ²®µ¥±â°¡ edge ÀÌ¸ç Å¸ÀÔÀº auto& Áï ÀÓÀÇÀÇ pointer type
+			for (auto& edge : adjacencyList[i]) { // adjacencyList[i] ì•ˆì˜ ì›ì†Œë“¤ì„ iì²˜ëŸ¼ í™œìš©í•˜ëŠ”ë° ê·¸ ê»ë°ê¸°ê°€ edge ì´ë©° íƒ€ì…ì€ auto& ì¦‰ ì„ì˜ì˜ pointer type
 				cout << i << "th vertex -- weight " << edge.weight << "--> " << edge.toward << "th vertex" << endl;
 			}
 		}
 	}
+
+	void dijkstraShortestPath(int start);
 };
+
 void make_graph_ing() {
 	int num;
 	cout << "type the number of vertices" << endl;
@@ -72,3 +77,6 @@ void show_ex_graph() {
 	cout << "Here is the graph" << endl;
 	g.print_Graph();
 }
+
+
+
