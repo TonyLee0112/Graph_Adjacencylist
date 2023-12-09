@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-#include "Graph.h"
+#include "Dijkstra_SP_problem.h"
 void main() {
 	cout << "Select the Mode" << endl;
 	cout << "1. show the example of Graph" << endl;
